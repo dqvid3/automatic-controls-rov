@@ -1,0 +1,21 @@
+Utilizzando il vettore dei modi, composto dai modi ricavati precedentemente, ossia:
+\begin{displaymath}
+m(t)=\left(\begin{array}{c}
+e^{\lambda_{1}t}\\
+e^{\lambda_{2}t}\\
+e^{\sigma t}\cos(\omega t)\\
+e^{\sigma t}\sin(\omega t)
+\end{array}\right)=\left(\begin{array}{c}
+1\\
+e^{\alpha t} \\
+e^{\sigma t}\cos(\omega t)\\
+e^{\sigma t}\sin(\omega t)
+\end{array}\right)
+\end{displaymath}
+Passiamo ora ad analarizzare l'andamento (asintotico) di questi ultimi:
+\begin{itemize}
+\item Il primo elemento del vettore è un esponenziale semplice, del tipo $e^{\lambda t}$ con autovalore reale $\lambda_1=0$ , quindi è un modo costante e ha valore 1.
+\item Il secondo elemento del vettore è un esponenziale semplice, del tipo $e^{\lambda t}$ con autovalore reale $\lambda_2=\alpha$; poichè $\alpha<0$, il modo è convergente a 0.
+\item Il terzo e il quarto elemento del vettore sono funzioni oscillanti del tipo $e^{\sigma t}\cos{\omega t} / e^{\sigma t}\sin{\omega t}$ e sono quindi associati ad una coppia di autovalori complesi coniugati del tipo $\sigma \pm jw$; analizzando la parte reale caratterizzata da $\sigma$, notiamo che il suo valore è negativo, poichè è uguale a $\frac{\epsilon}{2}$ dove $\epsilon$ è dato dal rapporto $-\frac{kr}{j}$ il cui valore è <0, pertanto entrambi i modi sono convergenti a zero. 
+\end{itemize}
+Essendo che il sistema non possiede alcun modo divergente, ma possiede almeno un modo non convergente (ovvero $\lambda_1$ che è costante) possiamo dire che il sistema è marginalmente stabile.

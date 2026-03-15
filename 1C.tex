@@ -1,0 +1,225 @@
+Calcoliamo il polinomio caratteristico:
+\begin{displaymath}
+\pi_{A}(\lambda)=det(A-\lambda I)=det\left(\begin{array}{cccc}
+-\lambda & 0 & 1 & 0\\
+0 & -\lambda & 0 & 1\\
+0 & \beta & \alpha-\lambda & 1\\
+0 & \gamma & 0 & \varepsilon-\lambda
+\end{array}\right)=
+\end{displaymath}
+\begin{scriptsize}
+\begin{displaymath}
+=(-1)^{1+1}(-\lambda)det\left(\begin{array}{ccc}
+-\lambda & 0 & 1\\
+\beta & \alpha-\lambda & 1\\
+\gamma & 0 & \varepsilon-\lambda
+\end{array}\right)=(-1)^{1+1}(-\lambda)(-1)^{2+2}(\alpha-\lambda)det\left(\begin{array}{cc}
+-\lambda & 1\\
+\gamma & \varepsilon-\lambda
+\end{array}\right)= 
+\end{displaymath}
+\end{scriptsize}
+\begin{displaymath}
+=(-\lambda)(\alpha-\lambda)(-\lambda(\varepsilon-\lambda)-\gamma)=(-\lambda)(\alpha-\lambda)(\lambda^{2}-\varepsilon\lambda-\gamma)
+\end{displaymath}
+Scriviamo l'equazione caratteristica:
+\begin{displaymath}
+(-\lambda)(\alpha-\lambda)(\lambda^{2}-\varepsilon\lambda-\gamma) = 0
+\end{displaymath}
+Otteniamo i seguenti autovalori reali:
+\begin{displaymath}
+\begin{array}{cc}
+\lambda_1=0 \\
+\lambda_2=\alpha<0
+\end{array}
+\end{displaymath}
+Per risolvere l'equazione $(\lambda^{2}-\varepsilon\lambda-\gamma)$ calcoliamo $\Delta=\varepsilon^2+4\gamma$ e notiamo che viene negativo.
+Applicando la regola di Cartesio, poichè $\varepsilon$ e $\gamma$ sono entrambi negativi, l'equazione presenta due permanenze che corrispondono a due soluzioni complesse coniugate con parte reale negativa. \\
+Per calcolare l'evoluzione libera utilizziamo $x(t)=e^{At}x_{0}$. \\
+Dopo aver verificato che A sia diagonalizzabile, procediamo nel seguente modo:
+\begin{displaymath}
+e^{At}=Te^{\Lambda t}T^{-1}
+\end{displaymath}
+Sia $T=(v_1|v_2|v_3|v_4)$, dove $v_1,v_2,v_3,v_4$ sono gli autovettori. \\
+Calcolando gli autovettori e mettendoli per colonna otteniamo la seguente matrice:
+\begin{displaymath}
+T=\left(\begin{array}{cccc}
+1 & \frac{1}{\alpha} & -\frac{2\beta(\sqrt{\Delta}+\varepsilon)}{\gamma(\sqrt{\Delta}-\varepsilon)(2\alpha+\sqrt{\Delta}-\varepsilon)} & \frac{2\beta(\sqrt{\Delta}-\varepsilon)}{\gamma(\sqrt{\Delta}+\varepsilon)(-2\alpha+\sqrt{\Delta}+\varepsilon)}\\
+0 & 0 & -\frac{\sqrt{\Delta}+\varepsilon}{2\gamma} & \frac{\sqrt{\Delta}-\varepsilon}{2\gamma} \\
+0 & 1 & \frac{\beta(\sqrt{\Delta}+\varepsilon)}{\gamma(2\alpha+\sqrt{\Delta}-\varepsilon)}  & \frac{\beta(\sqrt{\Delta}-\varepsilon)}{\gamma(-2\alpha+\sqrt{\Delta}+\varepsilon)}\\
+0 & 0 & 1 & 1\\
+\end{array}\right)
+\end{displaymath}
+Invertendo la matrice appena calcolata otteniamo:
+\begin{displaymath}
+T^{-1}=\left(\begin{array}{cccc}
+1 & -\frac{\beta\varepsilon}{\alpha\gamma} & -\frac{1}{\alpha} & \frac{\beta}{\alpha\gamma}\\
+0 & \frac{\beta(\varepsilon-\alpha)}{-\alpha^{2}+\alpha\varepsilon+\gamma} & 1 & \frac{-\beta}{-\alpha^{2}+\alpha\varepsilon+\gamma}\\
+0 & -\frac{\gamma}{\sqrt{\Delta}} & 0 & \frac{1}{2}-\frac{\varepsilon}{2\sqrt{\Delta}}\\
+0 & \frac{\gamma}{\sqrt{\Delta}} & 0 & \frac{1}{2}(\frac{\varepsilon}{\sqrt{\Delta}}+1)
+\end{array}\right)
+\end{displaymath}
+Per ricavare $\Lambda$ è sufficiente scrivere una matrice diagonale posizionando sulla diagonale principale gli autovalori $\lambda_i$:
+\begin{displaymath}
+\Lambda=\left(\begin{array}{cccc}
+0 & 0 & 0 & 0\\
+0 & \alpha & 0 & 0\\
+0 & 0 & \frac{1}{2}(\varepsilon-\sqrt{\Delta}) & 0\\
+0 & 0 & 0 & \frac{1}{2}(\varepsilon+\sqrt{\Delta})
+\end{array}\right)
+\end{displaymath}
+E poiché $\Lambda$ è diagonale per costruzione possiamo subito ricavare:
+\begin{displaymath}
+e^{\Lambda t}=\left(\begin{array}{cccc}
+e^{\lambda_{1}t} & 0 & 0 & 0\\
+0 & e^{\lambda_{2}t} & 0 & 0\\
+0 & 0 & e^{\lambda_{3}t} & 0\\
+0 & 0 & 0 & e^{\lambda_{4}t}
+\end{array}\right)
+\end{displaymath}
+A questo punto, come detto prima, vale la relazione:
+\begin{displaymath}
+x(t)=e^{At}x_{0}=Te^{\Lambda t}T^{-1}x_{0}
+\end{displaymath}
+E svolgendo i calcoli otteniamo:
+\begin{displaymath}
+Te^{\Lambda t}T^{-1}=\left(\begin{array}{cccc}
+a_{11} & a_{12} & a_{13} & a_{14}\\
+a_{21} & a_{22} & a_{23} & a_{24}\\
+a_{31} & a_{32} & a_{33} & a_{34}\\
+a_{41} & a_{42} & a_{43} & a_{44}\\
+\end{array}\right)
+\end{displaymath}
+dove:
+\begin{tiny}
+\begin{displaymath}
+\begin{array}{c}
+a_{11}=e^{\lambda_{1}t} \\ \\
+a_{12}=e^{\lambda_{1}t}(-\frac{\beta\varepsilon}{\alpha\gamma})+\frac{1}{\alpha}e^{\lambda_{2}t}(\frac{\beta(\varepsilon-\alpha)}{-\alpha^{2}+\alpha\varepsilon+\gamma})+\frac{2\beta(\sqrt{\Delta}+\varepsilon)}{\gamma(\sqrt{\Delta}-\varepsilon)(2\alpha+\sqrt{\Delta}-\varepsilon)}e^{\lambda_{3}t}(\frac{\gamma}{\sqrt{\Delta}})+\frac{2\beta(\sqrt{\Delta}-\varepsilon)}{\gamma(\sqrt{\Delta}+\varepsilon)(-2\alpha+\sqrt{\Delta}+\varepsilon)}e^{\lambda_{4}t}(\frac{\gamma}{\sqrt{\Delta}}) \\ \\
+a_{13}=\frac{1}{\alpha}(e^{\lambda_{2}t}-e^{\lambda_{1}t}) \\ \\
+a_{14}=e^{\lambda_{1}t}\frac{\beta}{\alpha\gamma}+\frac{1}{\alpha}e^{\lambda_{2}t}(\frac{-\beta}{-\alpha^{2}+\alpha\varepsilon+\gamma})-\frac{2\beta(\sqrt{\Delta}+\varepsilon)}{\gamma(\sqrt{\Delta}-\varepsilon)(2\alpha+\sqrt{\Delta}-\varepsilon)}e^{\lambda_{3}t}(\frac{1}{2}-\frac{\varepsilon}{2\sqrt{\Delta}})+\frac{2\beta(\sqrt{\Delta}-\varepsilon)}{\gamma(\sqrt{\Delta}+\varepsilon)(-2\alpha+\sqrt{\Delta}+\varepsilon)}e^{\lambda_{4}t}(\frac{1}{2}(\frac{\varepsilon}{\sqrt{\Delta}}+1)) \\ \\
+a_{21}=0 \\ \\
+a_{22}=\frac{\sqrt{\Delta}+\varepsilon}{2\gamma}e^{\lambda_{3}t}(\frac{\gamma}{\sqrt{\Delta}})+\frac{\sqrt{\Delta}-\varepsilon}{2\gamma}e^{\lambda_{4}t}(\frac{\gamma}{\sqrt{\Delta}}) \\ \\
+a_{23}=0 \\ \\
+a_{24}=-\frac{\sqrt{\Delta}+\varepsilon}{2\gamma}e^{\lambda_{3}t}(\frac{1}{2}-\frac{\varepsilon}{2\sqrt{\Delta}})+\frac{\sqrt{\Delta}-\varepsilon}{2\gamma}e^{\lambda_{4}t}(\frac{1}{2}(\frac{\varepsilon}{\sqrt{\Delta}}+1)) \\ \\
+a_{31}=0 \\ \\
+a_{32}=e^{\lambda_{2}t}(\frac{\beta(\varepsilon-\alpha)}{-\alpha^{2}+\alpha\varepsilon+\gamma})-\frac{\beta(\sqrt{\Delta}+\varepsilon)}{\gamma(2\alpha+\sqrt{\Delta}-\varepsilon)}e^{\lambda_{3}t}(\frac{\gamma}{\sqrt{\Delta}})+\frac{\beta(\sqrt{\Delta}-\varepsilon)}{\gamma(-2\alpha+\sqrt{\Delta}+\varepsilon)}e^{\lambda_{4}t}(\frac{\gamma}{\sqrt{\Delta}}) \\ \\
+a_{33}=e^{\lambda_{2}t} \\ \\
+a_{34}=e^{\lambda_{2}t}(\frac{-\beta}{-\alpha^{2}+\alpha\varepsilon+\gamma})+\frac{\beta(\sqrt{\Delta}+\varepsilon)}{\gamma(2\alpha+\sqrt{\Delta}-\varepsilon)}e^{\lambda_{3}t}(\frac{1}{2}-\frac{\varepsilon}{2\sqrt{\Delta}})+\frac{\beta(\sqrt{\Delta}-\varepsilon)}{\gamma(-2\alpha+\sqrt{\Delta}+\varepsilon)}e^{\lambda_{4}t}(\frac{1}{2}(\frac{\varepsilon}{\sqrt{\Delta}}+1)) \\ \\
+a_{41}=0 \\ \\
+a_{42}=e^{\lambda_{3}t}(-\frac{\gamma}{\sqrt{\Delta}})+e^{\lambda_{4}t}(\frac{\gamma}{\sqrt{\Delta}}) \\ \\
+a_{43}=0 \\ \\
+a_{44}=e^{\lambda_{3}t}(\frac{1}{2}-\frac{\varepsilon}{2\sqrt{\Delta}})+e^{\lambda_{4}t}(\frac{1}{2}(\frac{\varepsilon}{\sqrt{\Delta}}+1)) \\ \\
+\end{array}
+\end{displaymath}
+\end{tiny}
+Infine moltiplicando per $x_{0}$ otteniamo:
+\begin{displaymath}
+x(t)=Te^{\Lambda t}T^{-1}x_{0}=\left(\begin{array}{c}
+b_{1}\\
+b_{2}\\
+b_{3}\\
+b_{4}
+\end{array}\right)
+\end{displaymath}
+dove:
+\begin{tiny}
+\begin{displaymath}
+\begin{array}{l}
+b_{1}={\color{red}e^{\lambda_{1}t}x_{0_{1}}+e^{\lambda_{1}t}(-\frac{\beta\varepsilon}{\alpha\gamma})x_{0_{2}}}{\color{green}+\frac{1}{\alpha}e^{\lambda_{2}t}(\frac{\beta(\varepsilon-\alpha)}{-\alpha^{2}+\alpha\varepsilon+\gamma})x_{0_{2}}}{\color{blue}+\frac{2\beta(\sqrt{\Delta}+\varepsilon)}{\gamma(\sqrt{\Delta}-\varepsilon)(2\alpha+\sqrt{\Delta}-\varepsilon)}e^{\lambda_{3}t}(\frac{\gamma}{\sqrt{\Delta}})x_{0_{2}}} \color{black}+\\ \\ {\color{purple}+ \frac{2\beta(\sqrt{\Delta}-\varepsilon)}{\gamma(\sqrt{\Delta}+\varepsilon)(-2\alpha+\sqrt{\Delta}+\varepsilon)}e^{\lambda_{4}t}(\frac{\gamma}{\sqrt{\Delta}})x_{0_{2}}+} 
+{\color{green}+\frac{1}{\alpha}e^{\lambda_{2}t}x_{0_{3}}}{\color{red}-\frac{1}{\alpha}e^{\lambda_{1}t}x_{0_{3}}}{\color{red}+e^{\lambda_{1}t}\frac{\beta}{\alpha\gamma}x_{0_{4}}}{\color{green}+\frac{1}{\alpha}e^{\lambda_{2}t}(\frac{-\beta}{- \alpha^{2}+\alpha\varepsilon+\gamma})x_{0_{4}}} + \\ \\ {\color{blue}-\frac{2\beta(\sqrt{\Delta}+\varepsilon)}{\gamma(\sqrt{\Delta}-\varepsilon)(2\alpha+\sqrt{\Delta}-\varepsilon)}e^{\lambda_{3}t}(\frac{1}{2}-\frac{\varepsilon}{2\sqrt{\Delta}})x_{0_{4}}}{\color{purple}+\frac{2\beta(\sqrt{\Delta}-\varepsilon)}{\gamma(\sqrt{\Delta}+\varepsilon)(-2\alpha+\sqrt{\Delta}+\varepsilon)}e^{\lambda_{4}t}(\frac{1}{2}(\frac{\varepsilon}{\sqrt{\Delta}}+1))x_{0_{4}}} \\ \\
+b_{2}={\color{blue}\frac{\sqrt{\Delta}+\varepsilon}{2\gamma}e^{\lambda_{3}t}(\frac{\gamma}{\sqrt{\Delta}})x_{0_{2}}}{\color{purple}+\frac{\sqrt{\Delta}-\varepsilon}{2\gamma}e^{\lambda_{4}t}(\frac{\gamma}{\sqrt{\Delta}})x_{0_{2}}}{\color{blue}-\frac{\sqrt{\Delta}+\varepsilon}{2\gamma}e^{\lambda_{3}t}(\frac{1}{2}-\frac{\varepsilon}{2\sqrt{\Delta}})x_{0_{4}}}{\color{purple}+\frac{\sqrt{\Delta}-\varepsilon}{2\gamma}e^{\lambda_{4}t}(\frac{1}{2}(\frac{\varepsilon}{\sqrt{\Delta}}+1))x_{0_{4}}} \\ \\
+\end{array}
+\end{displaymath}
+\begin{displaymath}
+\begin{array}{l}
+b_{3}={\color{green}e^{\lambda_{2}t}(\frac{\beta(\varepsilon-\alpha)}{-\alpha^{2}+\alpha\varepsilon+\gamma})x_{0_{2}}}{\color{blue}-\frac{\beta(\sqrt{\Delta}+\varepsilon)}{\gamma(2\alpha+\sqrt{\Delta}-\varepsilon)}e^{\lambda_{3}t}(\frac{\gamma}{\sqrt{\Delta}})x_{0_{2}}}{\color{purple}+\frac{\beta(\sqrt{\Delta}-\varepsilon)}{\gamma(-2\alpha+\sqrt{\Delta}+\varepsilon)}e^{\lambda_{4}t}(\frac{\gamma}{\sqrt{\Delta}})x_{0_{2}}}{\color{green}+e^{\lambda_{2}t}x_{0_{3}}}{\color{green}+} \\ \\
+{\color{green}+}{\color{green}e^{\lambda_{2}t}(\frac{-\beta}{-\alpha^{2}+\alpha\varepsilon+\gamma})x_{0_{4}}}{\color{blue}+\frac{\beta(\sqrt{\Delta}+\varepsilon)}{\gamma(2\alpha+\sqrt{\Delta}-\varepsilon)}e^{\lambda_{3}t}(\frac{1}{2}-\frac{\varepsilon}{2\sqrt{\Delta}})x_{0_{4}}}{\color{purple}+\frac{\beta(\sqrt{\Delta}-\varepsilon)}{\gamma(-2\alpha+\sqrt{\Delta}+\varepsilon)}e^{\lambda_{4}t}(\frac{1}{2}(\frac{\varepsilon}{\sqrt{\Delta}}+1))x_{0_{4}}} \\ \\
+b_{4}={\color{blue}e^{\lambda_{3}t}(-\frac{\gamma}{\sqrt{\Delta}})x_{0_{2}}}{\color{purple}+e^{\lambda_{4}t}(\frac{\gamma}{\sqrt{\Delta}})x_{0_{2}}}{\color{blue}+e^{\lambda_{3}t}(\frac{1}{2}-\frac{\varepsilon}{2\sqrt{\Delta}})x_{0_{4}}}{\color{purple}+e^{\lambda_{4}t}(\frac{1}{2}(\frac{\varepsilon}{\sqrt{\Delta}}+1))x_{0_{4}}} \\
+\end{array}
+\end{displaymath}
+\end{tiny}
+Pur essendo presenti nella soluzione $x(t)$ quantità complesse come autovalori $\lambda_{i}$ complessi e $\sqrt{\Delta}$ con $\Delta<0$, sappiamo dalla teoria che autovalori e autovettori complessi appaiono sempre insieme al loro coniugato e poiché A è a valori reali (come in tutti i casi affrontati durante il corso) questo fa sì che $x(t)$ sia comunque complessivamente a valori reali. 
+Abbiamo verificato in forma numerica con Matlab la correttezza di tale risultato.
+\\\\In alternativa si poteva applicare l'altro metodo visto a lezione che prevede l'utilizzo di un cambiamento di coordinate al fine di trasformare per similitudine la matrice diagonalizzabile (sui complessi) A in una matrice reale diagonale a blocchi. In questo modo si poteva arrivare direttamente al risultato in forma reale. \\
+\\ Dalla teoria dell'analisi modale (ricerca e studio delle funzioni che compaiono nella soluzione libera) sappiamo che: \\
+1) Autovalori $\lambda$ reali generano modi esponenziali semplici del tipo $e^{\lambda t}$ \\
+2) Autovalori $\lambda$ complessi generano modi oscillanti del tipo $e^{\sigma t}\cos(\omega t)$ e $e^{\sigma t}\sin(\omega t)$\\
+Questo ci permette di scrivere il vettore dei modi, indispensabile per descrivere il modo con cui il modello evolve:
+\begin{displaymath}
+m(t)=\left(\begin{array}{c}
+e^{\lambda_{1}t}\\
+e^{\lambda_{2}t}\\
+e^{\sigma t}\cos(\omega t)\\
+e^{\sigma t}\sin(\omega t)
+\end{array}\right)=\left(\begin{array}{c}
+1 \\
+e^{\alpha t} \\
+e^{\sigma t}\cos(\omega t)\\
+e^{\sigma t}\sin(\omega t)
+\end{array}\right)
+=\left(\begin{array}{c}
+1\\
+e^{\alpha t} \\
+e^{\frac{\varepsilon}{2}t}\cos(\operatorname{Im}(\frac{\sqrt{\Delta}}{2}))\\
+e^{\frac{\varepsilon}{2}t}\sin(\operatorname{Im}(\frac{\sqrt{\Delta}}{2}))
+\end{array}\right)
+\end{displaymath}
+A questo punto dall'analisi matematica ricordiamo che: 
+\begin{displaymath}
+\begin{array}{c}
+e^{jx}=cos(x)+jsin(x) \\
+cos(x)=cos(-x) \\
+sin(x)=-sin(x) \\
+e^{-jx}=cos(-x)+jsin(-x)=cos(x)-jsin(x) \\
+\end{array}
+\end{displaymath}
+Possiamo quindi osservare che in $x(t)$ i termini $e^{\lambda_{3}t}$ e $e^{\lambda_{4}t}$ possono essere facilmente riscritti in modo che in essi compaiano esplicitamente i nostri modi:
+\begin{displaymath}
+\begin{array}{c}
+e^{\lambda_{3}t}=e^{\sigma t-j\omega t}=e^{\sigma t}e^{-j\omega t}=e^{\sigma t}(cos(\omega t)-jsin(\omega t))=e^{\sigma t}cos(\omega t)-je^{\sigma t}sin(\omega t) \\
+e^{\lambda_{4}t}=e^{\sigma t+j\omega t}=e^{\sigma t}e^{j\omega t}=e^{\sigma t}(cos(\omega t)+jsin(\omega t))=e^{\sigma t}cos(\omega t)+je^{\sigma t}sin(\omega t) \\
+\end{array}
+\end{displaymath}
+E in generale, poiché noi abbiamo dei coefficienti a fattore, vale:
+\begin{displaymath}
+\begin{array}{c}
+ke^{\lambda_{3}t}=ke^{\sigma t}cos(\omega t)-jke^{\sigma t}sin(\omega t) \\
+ke^{\lambda_{4}t}=ke^{\sigma t}cos(\omega t)+jke^{\sigma t}sin(\omega t) \\
+\end{array}
+\end{displaymath}
+Quindi per ogni coefficiente $k$ che moltiplica l'esponenziale complesso dobbiamo considerare una componente coseno (moltiplicata per 1) e una componente seno (moltiplicata per $-j$ o per $+j$). \\ \\
+A questo punto esprimiamo l'evoluzione libera come richiesto, ovvero nella forma $x(t)=M(A,x_{0})m(t)$. Per farlo raggruppiamo i termini simili con opportuni colori e li posizioniamo nella matrice $M$ in modo che il prodotto con il vettore dei modi sia uguale alla soluzione libera:
+\begin{displaymath}
+M(A,x_{0})=\left(\begin{array}{cccc}
+M_{11} & M_{12} & M_{13} & M_{14}\\
+M_{21} & M_{22} & M_{23} & M_{24}\\
+M_{31} & M_{32} & M_{33} & M_{34}\\
+M_{41} & M_{42} & M_{43} & M_{44}\\
+\end{array}\right)
+\end{displaymath}
+dove: \\
+\begin{small}
+\begin{displaymath}
+\begin{array}{c}
+M_{11}={\color{red}x_{0_{1}}+(-\frac{\beta\varepsilon}{\alpha\gamma})x_{0_{2}}}{\color{red}-\frac{1}{\alpha}x_{0_{3}}}{\color{red}+\frac{\beta}{\alpha\gamma}x_{0_{4}}}\\ \\
+M_{12}={\color{green}\frac{1}{\alpha}(\frac{\beta(\varepsilon-\alpha)x_{0_{2}}-\beta x_{0_{4}}}{-\alpha^{2}+\alpha\varepsilon+\gamma}+x_{0_{3}})} \\ \\
+M_{13}={\color{blue}\frac{2\beta(\sqrt{\Delta}+\varepsilon)}{\gamma(\sqrt{\Delta}-\varepsilon)(2\alpha+\sqrt{\Delta}-\varepsilon)}(\frac{2\gamma x_{0_{2}}-(\sqrt{\Delta}-\varepsilon)x_{0_{4}}}{2\sqrt{\Delta}})}+{\color{purple}\frac{2\beta(\sqrt{\Delta}-\varepsilon)}{\gamma(\sqrt{\Delta}+\varepsilon)(-2\alpha+\sqrt{\Delta}+\varepsilon)}(\frac{2\gamma x_{0_{2}}+(\varepsilon+\sqrt{\Delta})x_{0_{4}}}{2\sqrt{\Delta}})} \\ \\
+M_{14}=-j{\color{blue}\frac{2\beta(\sqrt{\Delta}+\varepsilon)}{\gamma(\sqrt{\Delta}-\varepsilon)(2\alpha+\sqrt{\Delta}-\varepsilon)}(\frac{2\gamma x_{0_{2}}-(\sqrt{\Delta}-\varepsilon)x_{0_{4}}}{2\sqrt{\Delta}})}
++j{\color{purple}\frac{2\beta(\sqrt{\Delta}-\varepsilon)}{\gamma(\sqrt{\Delta}+\varepsilon)(-2\alpha+\sqrt{\Delta}+\varepsilon)}(\frac{2\gamma x_{0_{2}}+(\varepsilon+\sqrt{\Delta})x_{0_{4}}}{2\sqrt{\Delta}})} \\ \\
+M_{21}=0 \\ \\
+M_{22}=0 \\ \\
+M_{23}=\textcolor{blue}{\frac{\sqrt{\Delta}+\varepsilon}{2\gamma}(\frac{2\gamma x_{0_{2}}-(\sqrt{\Delta}-\varepsilon)x_{0_{4}}}{2\sqrt{\Delta}})}+\textcolor{purple}{\frac{\sqrt{\Delta}-\varepsilon}{2\gamma}}{\color{purple}(\frac{2\gamma x_{0_{2}}+(\varepsilon+\sqrt{\Delta})x_{0_{4}}}{2\sqrt{\Delta}})} \\ \\
+M_{24}=-j\textcolor{blue}{\frac{\sqrt{\Delta}+\varepsilon}{2\gamma}(\frac{2\gamma x_{0_{2}}-(\sqrt{\Delta}-\varepsilon)x_{0_{4}}}{2\sqrt{\Delta}})}+j\textcolor{purple}{\frac{\sqrt{\Delta}-\varepsilon}{2\gamma}}{\color{purple}(\frac{2\gamma x_{0_{2}}+(\varepsilon+\sqrt{\Delta})x_{0_{4}}}{2\sqrt{\Delta}})} \\ \\
+M_{31}=0 \\ \\
+M_{32}=\textcolor{green}{\frac{\beta(\varepsilon-\alpha)x_{0_{2}}-\beta x_{0_{4}}}{-\alpha^{2}+\alpha\varepsilon+\gamma}+x_{0_{3}}} \\ \\
+M_{33}={\color{blue}\frac{\beta(\sqrt{\Delta}+\varepsilon)}{\gamma(2\alpha+\sqrt{\Delta}-\varepsilon)}(\frac{(\sqrt{\Delta}-\varepsilon)x_{0_{4}}-2\gamma x_{0_{2}}}{2\sqrt{\Delta}})}+\textcolor{purple}{\frac{\beta(\sqrt{\Delta}-\varepsilon)}{\gamma(-2\alpha+\sqrt{\Delta}+\varepsilon)}(\frac{2\gamma x_{0_{2}}+(\varepsilon+\sqrt{\Delta})x_{0_{4}}}{2\sqrt{\Delta}})} \\ \\
+M_{34}=-j{\color{blue}\frac{\beta(\sqrt{\Delta}+\varepsilon)}{\gamma(2\alpha+\sqrt{\Delta}-\varepsilon)}(\frac{(\sqrt{\Delta}-\varepsilon)x_{0_{4}}-2\gamma x_{0_{2}}}{2\sqrt{\Delta}})}+j\textcolor{purple}{\frac{\beta(\sqrt{\Delta}-\varepsilon)}{\gamma(-2\alpha+\sqrt{\Delta}+\varepsilon)}(\frac{2\gamma x_{0_{2}}+(\varepsilon+\sqrt{\Delta})x_{0_{4}}}{2\sqrt{\Delta}})} \\ \\
+M_{41}=0 \\ \\
+M_{42}=0 \\ \\
+M_{43}={\color{blue}\frac{(\sqrt{\Delta}-\varepsilon)x_{0_{4}}-2\gamma x_{0_{2}}}{2\sqrt{\Delta}}}+{\color{purple}\frac{2\gamma x_{0_{2}}+(\varepsilon+\sqrt{\Delta})x_{0_{4}}}{2\sqrt{\Delta}}} \\ \\
+M_{44}=-j{\color{blue}\frac{(\sqrt{\Delta}-\varepsilon)x_{0_{4}}-2\gamma x_{0_{2}}}{2\sqrt{\Delta}}}+j{\color{purple}\frac{2\gamma x_{0_{2}}+(\varepsilon+\sqrt{\Delta})x_{0_{4}}}{2\sqrt{\Delta}}}\\ \\
+\end{array}
+\end{displaymath}
+\end{small}
+Anche in questo caso abbiamo verificato che la matrice risulta reale.

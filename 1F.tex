@@ -1,0 +1,36 @@
+Sostituendo i valori numerici otteniamo:
+\begin{displaymath}
+\begin{array}{cc}
+\alpha=-\frac{133*\frac{\sqrt{3}}{2}}{580}=\text{\ensuremath{-0.1986}} \\ \\
+\beta=-\frac{-59.833*\frac{1}{2}}{580}+\frac{133*0*\frac{1}{2}}{580}-\frac{-143.20136*\frac{\sqrt{3}}{2}}{580}=0.2654 \\ \\
+\gamma=-\frac{143*\frac{\sqrt{3}}{2}}{560}=\text{\ensuremath{-0.2211}} \\ \\
+\varepsilon=-\frac{168}{560}=-0.3 \\
+\end{array}
+\end{displaymath}
+\begin{small}
+\begin{displaymath}
+\begin{array}{cc}
+G(s)=\frac{1}{s(s+0.1986)}\frac{\sqrt{3}}{2*580}+(\frac{0.2654}{s(s+0.1986)(0.2211+s^{2}+0.3s)}-1.2*\frac{\sqrt{3}}{2}\frac{1}{(0.2211+s^{2}+0.3s)})(-\frac{1.2}{560}) = \\ \\ 
+=\frac{0.00372s^{2}+0.00089s-0.00023}{s\left(s+0.1986\right)\left(s^{2}+0.3s+0.2211\right)}
+\approx\frac{0.0037201\left(s-0.1602\right)\left(s+0.3995\right)}{s\left(s+0.1986\right)\left(s^{2}+0.3s+0.2211\right)} 
+\end{array}
+\end{displaymath}
+\end{small}
+Calcoliamo gli zeri:
+\begin{displaymath}
+\begin{array}{cc}
+z_1 = -0.3995 \\
+z_2 = 0.1602  \\
+\end{array}
+\end{displaymath}
+Calcoliamo i poli:
+\begin{displaymath}
+\begin{array}{cc}
+p_1 = 0 \\ 
+p_2 = -0.1986  \\
+p_3 = -0.15 - 0.44564i \\
+p_4 = -0.15 + 0.44564i \\
+\end{array}
+\end{displaymath}
+Poichè $\Re(p_i)<0$, i poli sono stabili, giocoforza la funzione di trasferimento è stabile. \\
+La molteplicità degli zeri e dei poli è 1.

@@ -1,0 +1,86 @@
+% Si dice che la funzione di trasferimento è un invariante strutturale del sistema. Gli zeri di una funzione di trasferimento, ovvero le radici del polinomio a numeratore della f.d.t., sono legati alla presenza nella equazione differenziale che governa l’uscita delle derivate della funzione d’ingresso. \\
+Esistono due metodi (tre contando anche la definizione distruttiva) per calcolare la funzione di trasferimento: applicare la trasformata di Laplace alle varie equazioni con le opportune sostituzioni oppure più semplicemente sfruttare la linearità della trasformata nelle matrici del modello linearizzato calcolate precedentemente. Possiamo quindi procedere come segue:
+\begin{displaymath}
+\left\{
+\begin{array}{l}
+sX(s) - x_0= AX(s) + BU(s)\\
+Y(s)=CX(s) + DU(s)\\
+\end{array}
+\right.
+\end{displaymath}
+Possiamo porre la condizione iniziale $x_0=0$ e ricordare che $D=0$.
+Adesso ricaviamo X(s) dalla prima equazione e la sostituiamo nella seconda in modo da ottenere Y(s):
+\begin{displaymath}
+\begin{array}{cc}
+sX(s) - AX(s) = BU(s) \\
+(sI-A)X(s) = BU(s) \\
+(sI-A)^{-1}(sI-A)X(s) = (sI-A)^{-1}BU(s) \\
+X(s) = (sI-A)^{-1}BU(s) \\
+\end{array}
+\end{displaymath}
+Sostituendo: \\
+\begin{displaymath}
+Y(s)=CX(s)=C(sI-A)^{-1}BU(s)\\
+\end{displaymath}
+Da cui:
+\begin{displaymath}
+G(s)=\frac{Y(s)}{U(s)}=C(sI-A)^{-1}B
+\end{displaymath}
+Sostituendo le matrici ottenute in precedenza e dopo aver verificato che A è invertibile:
+\begin{displaymath}
+G(s)=\left(\begin{array}{cccc}
+1 & -bcos(\bar{x_{2}}) & 0 & 0\end{array}\right)\left(\begin{array}{cccc}
+s & 0 & -1 & 0\\
+0 & s & 0 & -1\\
+0 & -\beta & s-\alpha & 0\\
+0 & -\gamma & 0 & s-\varepsilon
+\end{array}\right)^{-1}\left(\begin{array}{c}
+0\\
+0\\
+\frac{cos(\bar{x_{2}})}{M}\\
+-\frac{b}{J}
+\end{array}\right)
+\end{displaymath}
+Calcolando la inversa:
+\begin{displaymath}
+G(s)=C\left(\begin{array}{cccc}
+\frac{1}{s} & \frac{\beta(s-\varepsilon)}{s(s-\alpha)(-\gamma+s^{2}-\varepsilon s)} & \frac{1}{s(s-\alpha)} & \frac{\beta}{s(s-\alpha)(-\gamma+s^{2}-\varepsilon s)}\\
+0 & \frac{s-\varepsilon}{(-\gamma+s^{2}-\varepsilon s)} & 0 & \frac{1}{(-\gamma+s^{2}-\varepsilon s)}\\
+0 & \frac{\beta(s-\varepsilon)}{(s-\alpha)(-\gamma+s^{2}-\varepsilon s)} & \frac{1}{(s-\alpha)} & \frac{\beta}{(s-\alpha)(-\gamma+s^{2}-\varepsilon s)}\\
+0 & \frac{\gamma}{(-\gamma+s^{2}-\varepsilon s)} & 0 & \frac{s}{(-\gamma+s^{2}-\varepsilon s)}
+\end{array}\right)B
+\end{displaymath}
+Svolgendo $C(sI-A)^{-1}$ otteniamo:
+\begin{displaymath}
+\begin{scriptsize}
+\left(\begin{array}{cccc}
+\frac{1}{s} & \frac{\beta(s-\varepsilon)}{s(s-\alpha)(-\gamma+s^{2}-\varepsilon s)}-bcos(\bar{x_{2}})\frac{s-\varepsilon}{(-\gamma+s^{2}-\varepsilon s)} & \frac{1}{s(s-\alpha)} & \frac{\beta}{s(s-\alpha)(-\gamma+s^{2}-\varepsilon s)}-bcos(\bar{x_{2}})\frac{1}{(-\gamma+s^{2}-\varepsilon s)}\end{array}\right)
+\end{scriptsize}
+\end{displaymath}
+Moltiplicando il risultato ottenuto per la matrice B otteniamo:
+\begin{displaymath}
+G(s)=
+\frac{1}{s(s-\alpha)}\frac{cos(\bar{x_{2}})}{M}+(\frac{\beta}{s(s-\alpha)(-\gamma+s^{2}-\varepsilon s)}-bcos(\bar{x_{2}})\frac{1}{(-\gamma+s^{2}-\varepsilon s)})(-\frac{b}{J})
+\end{displaymath}
+E semplificando:
+\begin{scriptsize}
+\begin{displaymath}
+G(s)=\frac{(Jcos(\bar{x_{2}})+Mb^{2}cos(\bar{x_{2}}))s^{2}-(\varepsilon Jcos(\bar{x_{2}})+Mb^{2}cos(\bar{x_{2}})\alpha)s-(\gamma Jcos(\bar{x_{2}})+M\beta b)}{s(s-\alpha)(-\gamma+s^{2}-\varepsilon s)MJ}
+\end{displaymath}
+\end{scriptsize}
+Calcolando gli zeri in forma simbolica:
+\begin{displaymath}
+\begin{array}{cc}
+z_{1}=\frac{\varepsilon Jcos(\bar{x_{2}})+Mb^{2}cos(\bar{x_{2}})\alpha-\sqrt{(\varepsilon Jcos(\bar{x_{2}})+Mb^{2}cos(\bar{x_{2}})\alpha)^{2}+4(Jcos(\bar{x_{2}})+Mb^{2}cos(\bar{x_{2}}))(\gamma Jcos(\bar{x_{2}})+M\beta b)}}{2(Jcos(\bar{x_{2}})+Mb^{2}cos(\bar{x_{2}}))} \\
+z_{2}=\frac{\varepsilon Jcos(\bar{x_{2}})+Mb^{2}cos(\bar{x_{2}})\alpha+\sqrt{(\varepsilon Jcos(\bar{x_{2}})+Mb^{2}cos(\bar{x_{2}})\alpha)^{2}+4(Jcos(\bar{x_{2}})+Mb^{2}cos(\bar{x_{2}}))(\gamma Jcos(\bar{x_{2}})+M\beta b)}}{2(Jcos(\bar{x_{2}})+Mb^{2}cos(\bar{x_{2}}))}
+\end{array}
+\end{displaymath}
+E i poli:
+\begin{displaymath}
+\begin{array}{cc}
+p_{1}=0 \\
+p_{2}=\alpha \\
+p_{3}=\frac{1}{2}(\varepsilon-\sqrt{\Delta}) \\
+p_{4}=\frac{1}{2}(\varepsilon+\sqrt{\Delta})
+\end{array}
+\end{displaymath}

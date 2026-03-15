@@ -1,0 +1,196 @@
+Vengono definiti l'ingresso F e l’uscita del sistema $y=z-bsen(\theta)$. \\Inoltre, viene definito il vettore delle variabili di stato $x=[x_1,x_2,x_3,x_4]$:
+\begin{displaymath}
+\left\{
+\begin{array}{l}
+x_{1}\triangleq z \\ 
+x_{2}\triangleq \vartheta \\ 
+x_{3}\triangleq z' \\
+x_{4}\triangleq \vartheta'\\
+\end{array}
+\right.
+\end{displaymath}
+Definisco il vettore degli ingressi di controllo $u=F$ \\
+Il sistema assume la seguente forma:
+\begin{displaymath}
+\left\{
+\begin{array}{l}
+x_{1}'\triangleq z'=x_3 \\
+x_{2}'\triangleq \vartheta' = x_4 \\
+x_{3}'\triangleq z'' \\
+x_{4}'\triangleq\vartheta''
+\end{array}
+\right.
+\end{displaymath}
+Per ricavare z'' e $\vartheta$'' è possibile portare in forma normale le equazioni del testo:
+\begin{displaymath}
+\begin{array}{l}
+z''=\frac{Fcos(\vartheta)}{M}-\frac{k_{z}z'cos(\vartheta)}{M}-\frac{F_{L}sin(\vartheta)}{M}-\frac{B}{M}=\frac{ucos(x_2)}{M}-\frac{k_{z}x_3cos(x_2)}{M}-\frac{F_Lsin(x_2)}{M}-\frac{B}{M} \\
+\vartheta''=-\frac{k_{r}\vartheta'}{J}-\frac{k_{\vartheta}sin(\vartheta)}{J}-\frac{Fb}{J}=-\frac{k_{r}x_{4}}{J}-\frac{k_{\vartheta}sin(x_2)}{J}-\frac{ub}{J}
+\end{array}
+\end{displaymath}
+Notiamo che il sistema non è lineare e procediamo a linearlizzarlo tramite linearizzazione approssimata. \\
+Siano gli equilibri:
+\begin{displaymath}
+\begin{array}{c}
+\bar x = [\bar z,\bar\vartheta,0,0] = [\bar x_1,\bar x_2,\bar x_3,\bar x_4] \\
+\bar u = \bar F
+\end{array}
+\end{displaymath}
+\begin{comment}
+Avremo quindi:
+\begin{displaymath}
+\begin{array}{l}
+\delta x_1=x_1-\bar{x_1} \\
+\delta x_2=x_2 - \bar x_2 \\
+%\delta x_3=x_3 \\
+%\delta x_4=x_4 \\
+\delta u=u-\bar u \\
+\end{array}
+\end{displaymath}
+\end{comment}
+Sia $Dx = f(x,u)$. Sviluppando in serie di Taylor e troncando al primo ordine, si ha
+\begin{displaymath}
+\begin{array}{l}
+f(x,u) \approx f(\bar x,\bar u) + \frac{\partial f}{\partial x}\mid_{\binom{x=\bar{x}}{u=\bar{u}}}(x-\bar x) + \frac{\partial f}{\partial u}\mid_{\binom{x=\bar{x}}{u=\bar{u}}}(u-\bar u)
+\end{array}
+\end{displaymath}
+Che quindi si semplifica in:
+\begin{displaymath}
+\begin{array}{l}
+f(x,u) \approx \frac{\partial f}{\partial x}\mid_{\binom{x=\bar{x}}{u=\bar{u}}}\delta x + \frac{\partial f}{\partial u}\mid_{\binom{x=\bar{x}}{u=\bar{u}}}\delta u
+\end{array}
+\end{displaymath}
+Definendo:
+\begin{displaymath}
+\begin{array}{l}
+A=\frac{\partial f}{\partial x}\mid_{\binom{x=\bar{x}}{u=\bar{u}}} \\
+B=\frac{\partial f}{\partial u}\mid_{\binom{x=\bar{x}}{u=\bar{u}}} \\
+\end{array}
+\end{displaymath}
+Si osserva che A e B sono matrici rispettivamente n×n e n×m a valori costanti. Introducendo nuove variabili di stato $x-\bar x$, e nuovi ingressi $u-\bar u$ come differenza rispetto ai valori nominali, si osserva facilmente che alle condizioni di equilibrio in tempo continuo $(Dx=\bar x'=f(\bar x;\bar u)=0)$ il sistema risulta una approssimazione al primo ordine del sistema dato. \\
+Otteniamo il sistema lineare $D\bar x = A \bar x + B\bar u$ che in forma matriciale sarà: 
+\begin{displaymath}
+\begin{array}{l}
+\left(\begin{array}{c}
+x_{1}'\\
+x_{2}'\\
+x_{3}'\\
+x_{4}'
+\end{array}\right)=\left(\begin{array}{cccc}
+\frac{\partial x_{1}'}{dx_{1}} & \frac{\partial x_{1}'}{dx_{2}} & \frac{\partial x_{1}'}{dx_{3}} & \frac{\partial x_{1}'}{dx_{4}}\\
+\frac{\partial x_{2}'}{dx_{1}} & \frac{\partial x_{2}'}{dx_{2}} & \frac{\partial x_{2}'}{dx_{3}} & \frac{\partial x_{2}'}{dx_{4}}\\
+\frac{\partial x_{3}'}{dx_{1}} & \frac{\partial x_{3}'}{dx_{2}} & \frac{\partial x_{3}'}{dx_{3}} & \frac{\partial x_{3}'}{dx_{4}}\\
+\frac{\partial x_{4}'}{dx_{1}} & \frac{\partial x_{4}'}{dx_{2}} & \frac{\partial x_{4}'}{dx_{3}} & \frac{\partial x_{4}'}{dx_{4}}
+\end{array}\right)_{\binom{x=\bar{x}}{u=\bar{u}}}\left(\begin{array}{c}
+x_{1}\\
+x_{2}\\
+x_{3}\\
+x_{4}
+\end{array}\right)+\left(\begin{array}{cc}
+\frac{\partial x_{1}'}{du} \\
+\frac{\partial x_{2}'}{du} \\
+\frac{\partial x_{3}'}{du} \\
+\frac{\partial x_{4}'}{du} \\
+\end{array}\right)_{\binom{x=\bar{x}}{u=\bar{u}}}\left(\begin{array}{c}
+u
+\end{array}\right)
+
+\end{array}
+\end{displaymath}
+Svolgendo i calcoli otteniamo:
+\begin{displaymath}
+\left(\begin{array}{c}
+x_{1}'\\
+x_{2}'\\
+x_{3}'\\
+x_{4}'
+\end{array}\right)=\left(\begin{array}{cccc}
+0 & 0 & 1 & 0\\
+0 & 0 & 0 & 1\\
+0 & -\frac{\bar usin(\bar{x_{2}})}{M}+\frac{k_{z}\bar{x_{3}}sin(\bar{x_{2}})}{M}-\frac{\bar{F_L}cos(\bar{x_{2}})}{M} & -\frac{k_{z}cos(\bar{x_{2}})}{M} & 0\\
+0 & -\frac{k_{\vartheta}cos(\bar{x_{2}})}{J} & 0 & -\frac{k_{r}}{J}
+\end{array}\right)\left(\begin{array}{c}
+x_{1}\\
+x_{2}\\
+x_{3}\\
+x_{4}
+\end{array}\right)+ 
+\end{displaymath}
+\begin{displaymath}
++\left(\begin{array}{c}
+0\\
+0\\
+\frac{cos(\bar{x_{2}})}{M}\\
+-\frac{b}{J}
+\end{array}\right)\left(\begin{array}{c}
+u\end{array}\right)
+\end{displaymath}
+Osserviamo che per come abbiamo definito il vettore di stato, la matrice A presenta una forma a blocchi: in alto a sinistra c'è una sottomatrice 2x2 nulla, in alto a destra c'è una sottomatrice 2x2 identità, in basso a sinistra una sottomatrice 2x2 triangolare superiore e in basso a destra una sottomatrice 2x2 diagonale. Questa struttura potrebbe essere utile per compattare le informazioni (ad esempio richiedendo meno banda per trasmetterle). \\
+Da qui in poi per comodità poniamo:
+\begin{displaymath}
+\begin{array}{l}
+\alpha=-\frac{k_{z}cos(\bar{x_{2}})}{M}<0 \\
+\beta=-\frac{\bar usin(\bar{x_{2}})} {M}+\frac{k_{z}\bar{x_{2}}sin(\bar{x_{2}})}{M}-\frac{\bar{F_L}cos(\bar{x_{2}})}{M}>0 \\
+\gamma=-\frac{k_{\vartheta}cos(\bar{x_{2}})}{J}<0 \\
+\varepsilon=-\frac{k_{r}}{J}<0 \\
+\end{array}
+\end{displaymath}
+ottenendo: 
+\begin{displaymath}
+\left(\begin{array}{c}
+x_{1}'\\
+x_{2}'\\
+x_{3}'\\
+x_{4}'
+\end{array}\right)=\left(\begin{array}{cccc}
+0 & 0 & 1 & 0\\
+0 & 0 & 0 & 1\\
+0 & \beta & \alpha & 0\\
+0 & \gamma & 0 & \varepsilon
+\end{array}\right)\left(\begin{array}{c}
+x_{1}\\
+x_{2}\\
+x_{3}\\
+x_{4}
+\end{array}\right)+\left(\begin{array}{c}
+0\\
+0\\
+\frac{cos(\bar{x_{2}})}{M}\\
+-\frac{b}{J}
+\end{array}\right)\left(\begin{array}{c}
+u\end{array}\right)
+\end{displaymath}
+Se vi è una mappa di uscita $y=h(x,u)$, si potrà linearizzare anch’essa in modo simile, ponendo $y =y(x,u) - y(\bar x, \bar u)=Cx+Du$, dove le matrici C e D sono esprimibili come:
+\begin{displaymath}
+\begin{array}{l}
+C=\frac{\partial y}{\partial x}\mid_{\binom{x=\bar{x}}{u=\bar{u}}} \\
+D=\frac{\partial y}{\partial u}\mid_{\binom{x=\bar{x}}{u=\bar{u}}} \\
+\end{array}
+\end{displaymath}
+In particolare l'espressione dell'uscita viene scritta come:
+\begin{displaymath}
+y=\left(\begin{array}{cccc}
+\frac{\partial y}{dx_{1}} & \frac{\partial y}{dx_{2}} & \frac{\partial y}{dx_{3}} & \frac{\partial y}{dx_{4}}\end{array}\right)_{\binom{x=\bar{x}}{u=\bar{u}}}\left(\begin{array}{c}
+x_{1}\\
+x_{2}\\
+x_{3}\\
+x_{4}
+\end{array}\right)+\left(\begin{array}{cc}
+\frac{\partial y}{du}\end{array}\right)_{\binom{x=\bar{x}}{u=\bar{u}}}\left(\begin{array}{c}
+u
+\end{array}\right)
+\end{displaymath}
+Svolgendo i calcoli otteniamo:
+\begin{displaymath}
+y=\left(\begin{array}{cccc}
+1 & -bcos(\bar{x_{2}}) & 0 & 0\end{array}\right)_{\binom{x=\bar{x}}{u=\bar{u}}}\left(\begin{array}{c}
+x_{1}\\
+x_{2}\\
+x_{3}\\
+x_{4}
+\end{array}\right)+\left(\begin{array}{cc}
+0 \end{array}\right)_{\binom{x=\bar{x}}{u=\bar{u}}}\left(\begin{array}{c}
+u
+\end{array}\right)
+\end{displaymath}
+

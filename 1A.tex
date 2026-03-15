@@ -1,0 +1,41 @@
+Al fine di trovare il punto di equilibrio del sistema, è necessario considerare nulle tutte le derivate del sistema.\\
+Poniamo quindi le derivate dell'equazione \eqref{eq:model} pari a zero e otteniamo il seguente risultato:
+\begin{displaymath}
+\left\{
+\begin{array}{l}
+0=\bar F \cos (\bar\vartheta)-\bar F_L \operatorname{sin}(\bar\vartheta)-\bar B \\
+0=0-k_{\vartheta} \operatorname{sin}(\bar\vartheta)-\bar{F} b \\
+y=\bar{z}-b \operatorname{sin}(\bar\vartheta)
+\end{array}
+\right.
+\end{displaymath}
+Svolgendo i calcoli otteniamo:
+\begin{displaymath}
+\left\{
+\begin{array}{l}
+\bar F_L= \frac{\bar F \cos(\bar\vartheta)-\bar B}{\sin(\bar\vartheta)} \\
+\bar F = -\frac{k_\vartheta \sin(\bar\vartheta)}{b} \\
+\bar z = y + b\sin(\bar\vartheta)
+\end{array}
+\right.
+\end{displaymath}
+Sostituendo $\bar F$ in $\bar F_L$:
+\begin{displaymath}
+\left\{
+\begin{array}{l}
+\bar F_L= \frac{(-\frac{k_\vartheta \sin(\bar\vartheta)}{b}) \cos(\bar\vartheta)-\bar B}{\sin(\bar\vartheta)} \\
+\bar F = -\frac{k_\vartheta \sin(\bar\vartheta)}{b} \\
+\bar z = y + b\sin(\bar\vartheta) \\
+\end{array}
+\right.
+\end{displaymath}
+Sostituendo il valore $\bar\vartheta = \frac{\pi}{6}$:
+\begin{displaymath}
+\left\{
+\begin{array}{l}
+\bar F_L= 2(-\frac{\sqrt3}{4}\frac{k_\vartheta}{b}-\bar B)\\
+\bar F = -\frac{k_\vartheta}{2b} \\
+\bar z = y + \frac{b}{2} \\
+\end{array}
+\right.
+\end{displaymath}

@@ -1,0 +1,145 @@
+% !TEX encoding = UTF-8 Unicode
+% Signature: Adriano Fagiolini, Template_Exams@UNIPA, 2021-Dec-21
+% Modified 2023-Jan-03 to Project form
+
+\documentclass[12pt]{exam} 
+
+\def\theCourse{Controlli Automatici}
+\def\theExamAcronym{CA}
+
+\input{def/afstyle}
+\input{group.tex}
+\input{\theThemeFile}
+
+%
+%
+%
+
+\begin{document}
+
+\afcover
+\afTheme
+\afSubmission
+
+%
+%
+%
+
+\section{Parte Simbolica}
+
+Si risponda ai seguenti quesiti in modo simbolico:\\
+
+\begin{parts}	
+
+\part[\afpt] Usando le condizioni (H1) nella Tabella~$3$, trovare le configurazioni di equilibrio del sistema.
+\begin{solution} 
+\input{1A.tex}
+\end{solution}
+\psimbA
+
+\part[\afpt] Assumendo piccoli spostamenti dello stato del sistema dagli equilibri trovati sopra, determinare il modello linearizzato per le variabili traslate.
+\begin{solution} 
+\input{1B.tex}
+\end{solution}
+\psimbB
+
+\part[\afpt] Indicando con $x_0$ il generico stato iniziale, determinare l'evoluzione libera del modello ed esprimerla come $M(A,x_0)\, m(t)$, con $m(t)$ il vettore dei modi.
+\begin{solution} 
+\input{1C.tex}
+\end{solution}
+\psimbC
+
+\part[\afpt] Usando anche l'ipotesi di equilibrio (H2), discutere l'andamento asintotico dei modi e la stabilità del sistema.
+\begin{solution} 
+\input{1D.tex}
+\end{solution}
+\psimbD
+
+\part[\afpt] Calcolare la funzione di trasferimento $G(s)$ tra la variazione dell'ingresso e la variazione dell'uscita e determinare, se possibile, le posizioni dei rispettivi poli ed eventuali zeri
+\begin{solution} 
+\input{1E.tex}
+\end{solution}
+\psimbE
+
+\part[\afpt] Passando all'uso dei valori numerici indicati in Tabella~$2$, determinare valutare $G(s)$, discuterne la posizione e la molteplicità dei poli e degli eventuali zeri, e verificarne la stabilità.
+\begin{solution} 
+\input{1F.tex}
+\end{solution}
+\psimbF
+
+\end{parts}
+
+%
+%
+%
+
+\newpage
+\section{Parte Numerica}
+
+Al fine di progettare il controllore, si suggerisce di procedere secondo la metodologia vista durante il corso come segue:\\
+
+\begin{parts}	
+
+\part[\afpt] Tradurre i requisiti della Tabella~$3$ nelle corrispondenti specifiche statiche e dinamiche del sistema controllato, e indicare l'approssimazione $G_c(s)$ della f.d.t. del sistema complessivo risultante in anello chiuso.
+\begin{solution} 
+\input{2A.tex}
+\end{solution}
+\pnumA
+
+\part[\afpt] Se la f.d.t. $G(s)$ del modello in anello aperto non è stabile, progettare un anello di retroazione interno, caratterizzato da un controllore $C_i(s)$ e da una f.d.t. risultante $G_i(s)$; in tal caso, nell'elaborato devono essere forniti (1) la descrizione della procedura seguita per ottenere $C_i(s)$, e (2) le espressioni di $C_i(s)$ e $G_i(s)$ con le posizioni e molteplicità dei rispettivi poli e degli eventuali zeri.
+\begin{solution} 
+\input{2B.tex}
+\end{solution}
+\pnumB
+
+\part[\afpt] Se invece $G(s)$ è già stabile o se si è ottenuta una $G_i(s)$ stabile dal punto precedente, verificare il soddisfacimento o meno delle specifiche statiche e dinamiche; a tal fine, riportare $G(s)$ o $G_i(s)$ in forma di Bode, indicando il guadagno di Bode, le costanti di tempo di eventuali singolarità reali, e i coefficienti di smorzamento e le pulsazioni naturali di eventuali singolarità coniugate.
+\begin{solution} 
+\input{2C.tex}
+\end{solution}
+\pnumC
+
+\part[\afpt] Progettare un controllore $C(s) = \frac{K_c}{s^t} C_0(s)$ che soddisfi i requisiti della Tabella~$3$ e ottenga la $G_c(s)$ desiderata; nel documento devono essere riportati (1) la descrizione dettagliata della procedura seguita, (2) le funzioni $C(s)$ e $G_c(s)$, nonché i (3) diagrammi di Bode nelle varie fasi della progettazione (ad esempio, quelli che mostrano le risposte armoniche della catena diretta $C(j\omega)\, G(j\omega)$ o $C(j\omega)\, G_i(j\omega)$), e del modello controllato complessivo $G_c(j\omega)$).
+\begin{solution} 
+\input{2D.tex}
+\end{solution}
+\pnumD
+
+\part[\afpt] Realizzare una prima simulazione in Matlab/Simulink del sistema chiuso $G(s)$ in anello singolo con il controllore $C(s)$ o in doppio anello con i controllori $C_i(s)$ e $C(s)$; la simulazione deve mostrare il soddisfacimento dei requisiti della Tabella~$3$ rispetto ai segnali di riferimento o di disturbo indicati.
+\begin{solution} 
+\input{2E.tex}
+\end{solution}
+\pnumE
+
+\part[\afpt] Realizzare una seconda simulazione in Matlab/Simulink del modello del sistema non lineare, chiuso in anello singolo con il controllore $C(s)$ o in doppio anello con i controllori $C_i(s)$ e $C(s)$, operando le opportune traslazioni delle variabili in ingresso e in uscita dal sistema stesso; la simulazione deve mostrare il soddisfacimento dei requisiti della Tabella~$3$, anche se in modo approssimato, nei confronti dei soli segnali di riferimento.
+\begin{solution} 
+\input{2F.tex}
+\end{solution}
+\pnumF
+
+\end{parts}
+
+%
+%
+%
+
+\newpage
+\section{Parte Teorica}
+
+\begin{parts}
+
+\part[\afpt] \afTheoryQuestion
+\begin{solution}
+\input{3A.tex}
+\end{solution}
+\pteorA
+
+\end{parts}
+
+\input{figures.tex}
+
+\finalComments
+
+\vfill \medskip\hfill\textbf{Fine dello svolgimento}
+
+\end{document}
+

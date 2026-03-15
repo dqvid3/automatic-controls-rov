@@ -1,0 +1,39 @@
+Riportiamo G(s) in forma di Bode: \\
+\begin{displaymath}
+G(s)\approx\frac{0.0037201\left(s-0.1602\right)\left(s+0.3995\right)}{s\left(s+0.1986\right)\left(s^{2}+0.3s+0.2211\right)}= \\
+\end{displaymath}
+Portando fuori un -0.1602:
+\begin{displaymath}
+=\frac{0.0037201(-0.1602)\left(1+s(-\frac{1}{0.1602})\right)\left(s+0.3995\right)}{s\left(s+0.1986\right)\left(s^{2}+0.3s+0.2211\right)}= \\
+\end{displaymath}
+Portando fuori un +0.3995:
+\begin{displaymath}
+=\frac{0.0037201(-0.1602)(+0.3995)\left(1+s(-\frac{1}{0.1602})\right)\left(1+s(\frac{1}{0.3995})\right)}{s\left(s+0.1986\right)\left(s^{2}+0.3s+0.2211\right)}= \\
+\end{displaymath}
+Portando fuori un +0.1986:
+\begin{displaymath}
+=\frac{0.0037201(-0.1602)(+0.3995)\left(1+s(-\frac{1}{0.1602})\right)\left(1+s(\frac{1}{0.3995})\right)}{s(+0.1986)\left(1+s(\frac{1}{0.1986})\right)\left(s^{2}+0.3s+0.2211\right)}= \\
+\end{displaymath}
+Per aggiustare il polinomio di secondo grado intanto facciamo spuntare +1 portando fuori un +0.2211:
+\begin{displaymath}
+=\frac{0.0037201(-0.1602)(+0.3995)\left(1+s(-\frac{1}{0.1602})\right)\left(1+s(\frac{1}{0.3995})\right)}{s(+0.1986)(+0.2211)\left(1+s(\frac{1}{0.1986})\right)\left(1+\frac{2}{1}\frac{0.3(2^{-1})}{0.2211}\frac{\sqrt{0.2211}}{\sqrt{0.2211}}s+\frac{1}{0.2211}s^2\right)}= \\
+\end{displaymath}
+Ricaviamo adesso $\delta=\frac{0.3(2^{-1}){\sqrt{0.2211}}}{0.2211}=0.31900$ e $\omega_n={\sqrt{0.2211}}=0.47021$.
+\\ \\
+Il guadagno di Bode, direttamente osservabile dalla forma di Bode, vale: \\
+$$K=\frac{0.0037201(-0.1602)(+0.3995)}{(+0.1986)(+0.2211)}=-0.00542$$
+Quindi la funzione di trasferimento in forma di Bode vale:
+\begin{displaymath}
+G(s)=\frac{-0.00542\left(1+s(-\frac{1}{0.1602})\right)\left(1+s(\frac{1}{0.3995})\right)}{s\left(1+s(\frac{1}{0.1986})\right)\left(1+\frac{2*0.319}{0.47021}s+\frac{1}{0.2211}s^2\right)}\\
+\end{displaymath}
+\\
+Le costanti di tempo delle singolarità reali sono: \\
+zeri: \\
+$$\tau_{1}=-\frac{1}{z_{1}}=\frac{1}{0.3995}=2.50312$$
+$$\tau_{2}=-\frac{1}{z_{2}}=-\frac{1}{0.1602}=-6.24219$$ 
+poli: \\
+$$\tau_{3}=-\frac{1}{p_{1}}=-\frac{1}{0}=-\infty$$ 
+$$\tau_{4}=-\frac{1}{p_{2}}=\frac{1}{0.1986}=5.03524$$
+I coefficienti di smorzamento e le pulsazioni naturali delle singolarità complesse coniugate sono già stati calcolati poco sopra. In alternativa ricordando che il coefficiente della parte reale è -0.15 e il coefficiente della parte immaginaria è 0.44564 si poteva ottenere lo stesso risultato calcolando: \\
+$$\omega_n=\sqrt{\alpha^2+\beta^2}=\sqrt{(-0.15)^2+(0.44564)^2}=0.47020$$
+$$\delta=-\frac{\alpha}{\omega_n}=-\frac{-0.15}{0.47020}=0.31901$$

@@ -1,0 +1,21 @@
+(1) Descrizione: \\
+Poiché la trasformata del gradino è 1/s è necessario avere un polo in zero per ottenere l'inseguimento perfetto.\\ 
+Ma dal momento che tale polo è già presente in $G(s)$, non è necessario
+aggiungerlo con il controllore e quindi t = 0. \\ \\
+Essendo inizialmente il margine di fase $M_f=-93.1°$, come si può notare dalla \hyperref[fig:fig1]{Fig. 1}, risolviamo utilizzando un guadagno del controllore negativo $K_c=-1$ ottenendo un $M_f=86.9°$ e una frequenza di taglio $\omega_T = 0.00542 \, rad/s$, da come si può notare dalla \hyperref[fig:fig2]{Fig. 2}.\\ \\
+Per aumentare la $\omega_T$, ovvero raggiungere il tempo di assestamento desiderato, procediamo con l'aumento del guadagno del controllore. \\
+Andiamo a considerare quindi un guadagno pari a -11.7 ottenendo una frequenza di taglio $\omega_T=0.0671 \, rad/s$, da come si può notare dalla \hyperref[fig:fig3]{Fig. 3}.\\ \\
+Infine aggiungiamo uno zero prima della frequenza di taglio e un polo in alta frequenza per aumentare il margine di fase, e inoltre ci possiamo permettere di abbassare di poco il guadagno per aumentare il margine di fase ancora un po', ottenendo il diagramma riportato in \hyperref[fig:fig4]{Fig. 4}.\\ \\
+Per rendere un controllore fisicamente realizzabile è necessario che sia causale, ovvero che il numero di poli sia maggiore o uguale al numero di zeri, in caso contrario è necessario aggiungere poli in alta frequenza in modo da non perturbare il sistema. \\ \\
+Essendo che nel nostro caso il numero dei poli è uguale al numero di zeri, il controllore è fisicamente realizzabile e quindi non è necessario aggiungere poli. \\
+Si può notare dalla figura un margine di fase pari a 62.3° e una frequenza di taglio pari a 0.0672 rad/s.\\ \\
+Il fatto che il margine di fase non sia uguale a 90° è dovuto all'approssimazione ad un polo dominante, che non è precisa essendoci poli vicini tra di loro.\\ \\
+Possiamo notare che le specifiche richieste sono rispettate dalla risposta al gradino riportato nella figura \hyperref[fig:fig5]{Fig. 5}. \\
+
+(2) Espressioni: \\
+Otteniamo quindi il seguente controllore: $$C(s) = -11.4 \, \frac{1+\frac{s}{0.274}}{1+\frac{s}{0.902}}$$
+Per ottenere la $G_c$ svolgiamo i seguenti passaggi:
+$$G_c(s)=\frac{C(s)G(s)}{1+C(s)G(s)}$$
+$$G_c(s)=\frac{-0.13961 \, (s+0.274)\,(s+0.3995)\,(s-0.1602)}{(s+0.9977)\,(s^2+0.2582s+0.01844)\,(s^2+0.1447s+0.1331)}$$ 
+(3) Diagrammi di Bode: \\
+(vedi paragrafo Figure e diagrammi)

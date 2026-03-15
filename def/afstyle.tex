@@ -1,0 +1,384 @@
+% !TEX encoding = UTF-8 Unicode
+\usepackage[a4paper, top=25mm, bottom=25mm, left=25mm, right=25mm]{geometry}
+\usepackage{microtype} % Tweak font spacing for aesthetics
+%\usepackage{cmbright} % Font
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} 
+\usepackage[italian]{babel} 
+\usepackage[colorlinks=true, allcolors=black]{hyperref}
+\usepackage{subfigure} % Multiple figures environment
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx} % Include graphics
+\usepackage{booktabs} % Professional tables
+\usepackage[dvipsnames]{xcolor}  % Advanced colours
+\usepackage{soul} % Highlight text and other text things
+\usepackage{caption} % Manage captions in floats
+\usepackage{textcomp} % Includes euro symbol
+\usepackage{ifthen} % Use of conditional \if
+\usepackage{fmtcount} % Convert integers to words
+\usepackage[per-mode = symbol]{siunitx}  % To use SI units
+\usepackage[version=4]{mhchem}  % For writing chemical symbols
+\usepackage{totcount} % Display points counter at beginning 
+\usepackage{xstring} % To manipulate strings
+\usepackage{multicol} % Multiple column environment (FS)
+%\usepackage{lipsum,turnthepage}
+\usepackage{wasysym} % Symbols for multiple choice questions
+\usepackage{fontawesome}
+\usepackage{fontawesome}
+\usepackage[most]{tcolorbox} % to circle the text of the email
+\usepackage{multicol}
+
+% DOCUMENT DEFINITIONS
+\pointsinrightmargin  % Points on the right margin
+\pointformat{\bfseries(\themarginpoints)}  % Points in bold and bracket style
+\renewcommand{\partlabel}{\bfseries{(\thepartno)}} % Bold part numbers
+\renewcommand{\subpartlabel}{\bfseries{\thesubpart)}} % Bold part numbers
+\pagestyle{headandfoot} % Solution header and footer
+\header{}{}{} % Solution header
+\footer{}{}{\theCourse{} -- \theExamDate{} -- Gruppo \theGroupID{}} 
+%\graphicspath{{img/}} % Directory where pictures are stored
+\definecolor{myRed}{RGB}{184,0,1} % Define new colour
+\definecolor{myGrey}{RGB}{211,211,211}  % Define new colour
+\definecolor{verylightgray}{RGB}{241,241,241}  % Define new colour
+\checkedchar{\large $\CIRCLE$}
+\setlength{\fboxrule}{0pt}
+
+% VERSION TRACKING
+\newcommand{\theVersion}{1.1}
+\newcommand{\theVersionDate}{13-Dec-2021}
+
+% COURSE
+\def\theExamEmail{esame.mirpalab@gmail.com}
+\newcommand{\theCourseCode}{CODE12345}
+\newcommand{\theDiet}{Diet} % EDIT - Exam diet (Main OR Resit)
+\newcommand{\examOC}{Open}
+\newcommand{\useCalculators}{Yes}
+\newcommand{\formulaSheet}{Yes}
+\newcommand{\hasSections}{Yes}
+\newcommand{\separateBooks}{No} % Answer sections in separate books
+\newcommand{\numberQuestions}{All}
+\newcommand{\withSolutions}{Yes}
+
+% NEW COMMANDS
+\newtotcounter{pointsCounter} % Counter for total number of points in parts
+\newtotcounter{numberOfSections} % Counter for number of sections
+\newtotcounter{numberOfQuestions} % Counter for number of questions
+
+% EXAM STRUCTURE - SECTIONS AND QUESTIONS
+\ifthenelse{\equal{\hasSections}{Yes} \OR \equal{\hasSections}{Y} \OR \equal{\hasSections}{yes} \OR \equal{\hasSections}{y} \OR \equal{\hasSections}{YES}}
+% \hasSections THEN clause
+{\newcommand{\sectionStart}{
+    \setcounter{question}{0} % (Re)initiate questions counter
+    \setcounter{figure}{0} % Initiate figure counter
+    \setcounter{table}{0} % Initiate table counter
+    \qformat{\ifthenelse{\equal{\thequestion}{1}}
+        {\fbox{\parbox{16cm}{\textbf{\large SEZIONE \Alph{numberOfSections} \hfill\vrule depth 0.5em width 0pt \\ 
+        Quesito \Alph{numberOfSections}\thequestion}} \hfill\vrule depth 1.5em width 0pt}}
+        {\fbox{\parbox{16cm}{\large \textbf{Quesito \Alph{numberOfSections}\thequestion}} \hfill\vrule depth 0.8em width 0pt}}
+    }
+    \stepcounter{numberOfSections} % Increment sections counter
+}}
+% \hasSections ELSE clause
+{   \setcounter{question}{0} % (Re)initiate questions counter
+    \setcounter{figure}{0} % Initiate figure counter
+    \setcounter{table}{0} % Initiate table counter
+    \qformat{
+        {\fbox{\parbox{16cm}{\large \textbf{Quesito \thequestion}} \hfill\vrule depth 0.8em width 0pt}}
+    }
+}
+
+\newcommand{\callQuestion}[2]{ % Call new question
+    \cleardoublepage \input{#1} % Start question in new page
+    \addtocounter{pointsCounter}{#2} % Add points to counter
+    \addtocounter{numberOfQuestions}{1} % Increment questions counter
+    \stepcounter{figure} % Increment figure counter
+    \stepcounter{table} % Increment table counter
+}
+
+\newcommand{\callFormulaSheet}[1]{
+    \ifthenelse{\equal{\formulaSheet}{Yes} \OR \equal{\formulaSheet}{Y} \OR \equal{\formulaSheet}{yes} \OR \equal{\formulaSheet}{y} \OR \equal{\formulaSheet}{YES}}{\cleardoublepage \input{#1}}{}
+}
+
+\newcommand{\headingFormulaSheet}{
+    \pagestyle{empty}
+    \setlength{\textwidth}{180mm}
+    \setlength{\textheight}{265mm}
+    \setlength{\topmargin}{-20mm}
+    \setlength\oddsidemargin{-12mm}
+    \setlength\evensidemargin{-12mm}
+    \setlength{\columnsep}{10mm}
+    \setlength{\columnseprule}{0.4pt}
+    \setlength{\jot}{5pt}
+    \setlength\parindent{0pt}
+    \twocolumn
+    \fcolorbox{white}{myGrey}{\begin{minipage}{20em}
+        \centering \vspace{4mm} {\Large \textbf{Formula Sheet}} \\ 
+        \theCourse\ (\theCourseCode) \\
+        {\small \theExamDate} \vspace{3mm} 
+    \end{minipage}}
+}
+
+% TITLES AND FORMATS
+\pointname{} % No title for marks
+\pointsdroppedatright % Marks at right margin
+\framedsolutions % Add frame to solutions
+\addto\captionsenglish{ % Format Figure labels
+    \renewcommand\figurename{Figure}}
+\addto\captionsenglish{ % Format Table labels
+    \renewcommand\tablename{Table}}
+\makeatletter
+\def\fnum@figure{\figurename~\Alph{numberOfSections}\thefigure}
+\def\fnum@table{\tablename~\Alph{numberOfSections}\thetable}
+\makeatother
+\renewcommand{\solutiontitle}{
+   \noindent\textbf{Soluzione:}\par\noindent} % Rename solutions
+
+% COVER PAGE - DO NOT EDIT
+\newcommand{\theStudentName}{Mario/a Rossi}
+\newcommand{\theStudentMatriculation}{0542185}
+\newcommand{\theStudentIDPath}{support/unipacard.png}
+
+\usepackage[nomessages]{fp}% http://ctan.org/pkg/fp
+
+\newcommand*{\ExtractFirstChar}[2]{%
+    \StrRemoveBraces{#2}[\FirstChar]%
+    \StrChar{\FirstChar}{#1}[\FirstChar]%
+    \FirstChar}
+\newcommand{\theStudentAlpha}{
+    \ExtractFirstChar{4}{\theStudentMatriculation}}
+\newcommand{\theStudentBeta}{
+    \ExtractFirstChar{5}{\theStudentMatriculation}}
+\newcommand{\theStudentGamma}{
+    \ExtractFirstChar{6}{\theStudentMatriculation}}
+
+%% Prepare Email
+\usepackage{etoolbox}
+\makeatletter
+\newcommand\myemail[3]{%                %\newcommand\tpj@compose@mailto[3]{%
+\edef\@tempa{mailto:#1?subject=#2 }%
+\edef\@tempb{\expandafter\html@spaces\@tempa\@empty}%
+\href{\@tempb}{#3}}
+\catcode\%=11
+\def\html@spaces#1 #2{#1%20\ifx#2\@empty\else\expandafter\html@spaces\fi#2}
+\catcode\%=14
+\makeatother
+\newcommand{\theExamSubjectCode}{\theExamAcronym\theExamDate}
+\newcommand{\theEmailSubject}{[\theExamSubjectCode] \theStudentName, \theStudentMatriculation}
+
+
+
+
+
+
+
+%%%\usepackage[pdftex]{hyperref}
+
+\usepackage{etoolbox}
+\makeatletter
+\let\HyField@calcorder\ltx@empty
+\Hy@AtBeginDocument{%
+  \if@filesw
+    \immediate\write\@mainaux{%
+      \string\providecommand\string\HyField@AuxAddToCalculationOrder[1]{}%
+    }%
+  \fi
+  \def\HyField@AuxAddToCalculationOrder#1{%
+    \xdef\HyField@calcorder{%
+      \ifx\HyField@calcorder\@empty
+      \else
+        \HyField@calcorder
+        \space
+      \fi
+      #1 0 R%
+    }%
+  }%
+}
+\def\HyField@@AddToFields#1{%
+  \HyField@AfterAuxOpen{%
+    \if@filesw
+      \write\@mainaux{%
+        \string\HyField@AuxAddToFields{#1}%
+      }%
+      \ifx\Fld@calculate@code\@empty
+      \else
+        \write\@mainaux{%
+          \string\HyField@AuxAddToCalculationOrder{#1}%
+        }%
+      \fi
+    \fi
+  }%
+}%
+\patchcmd{\@Form}{/Fields[\HyField@afields]}{/CO[\HyField@calcorder]/Fields[\HyField@afields]}{}{}
+\makeatother
+
+
+
+
+\def\theExamDate{\today}
+
+
+
+\newcommand{\afcover}
+{
+\MakeResultCmd{7}%\theafQuestionCnt}
+%\meaning\afResultCmd % uncomment to inspect
+
+\begin{coverpages}
+\begin{flushright}
+{\Large
+\begin{Form}
+\TextField[readonly=true, value=0, charsize=16pt, backgroundcolor=verylightgray, calculate={\afResultCmd}]{{\bf Risultato:~}}
+\end{Form}
+\\
+}
+{\em (a cura del docente)}
+\end{flushright}
+\hrule
+%
+\begin{flushleft}
+\Large
+\begin{tabular}{r p{11cm}}
+Esame di: & {\bf \theCourse}\\
+Tema: & {\bf \theThemeTitle}\\
+Consegna: & {\bf \theExamDate}\\[20pt]
+%
+Gruppo: & {\bf \theGroupID}\\
+Studenti: & {\bf \theStudentOne} (corrispondente)\\
+\ifdefined\theStudentTwo & {\bf \theStudentTwo}\fi\\
+\ifdefined\theStudentThree & {\bf \theStudentThree}\fi\\
+\ifdefined\theStudentFour & {\bf \theStudentFour}\fi\\
+\ifdefined\theStudentFive & {\bf \theStudentFive}\fi\\
+\ifdefined\theStudentSix & {\bf \theStudentSix}\fi\\
+\ifdefined\theStudentSeven & {\bf \theStudentSeven}\fi\\
+\ifdefined\theStudentEight & {\bf \theStudentEight}\fi\\
+\end{tabular}
+\end{flushleft}
+%
+\vfill
+%
+% \begin{flushright}
+% \tcbox[enhanced,drop shadow,colback=white]{\myemail{\theExamEmail}{\theEmailSubject}{{\em Prepara email: \theExamEmail} } } (se non automaticamente compilato, indicare come soggetto \\dell'email: ``\theEmailSubject''; \\ includere manualmente il PDF della soluzione)
+% \end{flushright}
+\vfill 
+% \begin{flushleft}
+% {\large \bf Dichiarazione di buona condotta durante lo svolgimento dell'esame}\\ \vspace{3mm} {\em Io sottoscritto(a) {\bf \theStudentName}, studente(essa) dell'Università degli Studi di Palermo, con numero di matricola {\bf\theStudentMatriculation}, dichiaro di aver svolto la soluzione qui sotto riportata in completa autonomia e senza l'uso di materiale non consentito.}
+% \end{flushleft}
+\begin{flushright}
+\small Powered by {\bf MIRPALab.it}~\href{https://www.mirpalab.it}{\faHome}~\href{https://www.facebook.com/mirpalab/}{\faFacebookSquare}~\href{https://www.instagram.com/mirpalab/}{\faInstagram}
+\end{flushright}
+\end{coverpages}
+\newpage
+}
+
+\ifthenelse{\equal{\withSolutions}{Yes} \OR \equal{\withSolutions}{Y} \OR \equal{\withSolutions}{yes} \OR \equal{\withSolutions}{y} \OR \equal{\withSolutions}{YES}}{\printanswers}{}
+
+%
+\def\afpt{0}
+
+% AF: dynamic macros
+%\newcommand\MakeArray[2]{\ifnumless{#2}{1}{\def#1{}}{\def#1{~0=0} \ifnumgreater{#2}{1}{\foreach \n in {1,...,#2} {\xdef#1{#1,~\n=\n}}}{}}}
+\newcommand\MakeArray[2]{\ifnumless{#2}{1}{\def#1{}}{\def#1{0} \ifnumgreater{#2}{1}{\foreach \n in {1,...,#2} {\xdef#1{#1,\n}}}{}}}
+%
+\usepackage{pgffor}
+\newcommand{\Repeat}[2]{\foreach \n in {1,...,#1}{#2}}
+\newcommand\MakeResultCmd[1]{
+\newcounter{ct}\setcounter{ct}{2}
+\def\afResultCmd{event.value = this.getField('answerA').value} 
+\Repeat{#1}{\xdef\afResultCmd{\afResultCmd+this.getField('answer\Alph{ct}').value} \addtocounter{ct}{1}} \xdef\afResultCmd{\afResultCmd;}}
+%
+\newcounter{afQuestionCnt}\setcounter{afQuestionCnt}{0}
+\newcommand\afnotess[1]
+{
+\stepcounter{afQuestionCnt}
+\begin{flushright}
+\begin{Form}
+\noindent
+\MakeArray\MyArray#1
+\TextField[name=tanswer\Alph{afQuestionCnt}, multiline=true, bordercolor=verylightgray, backgroundcolor=verylightgray, width=0.95\linewidth, height=1in, charsize=12pt, color=myRed]{{\bf Correzione} {\em (a cura del docente)}:\\[1pt]}\\
+%\ChoiceMenu[radio, name=answer\Alph{afQuestionCnt}, value=0]{{\em Punteggio:~}}{\MyArray}
+\TextField[name=answer\Alph{afQuestionCnt}, bordercolor=verylightgray, backgroundcolor=verylightgray, width=0.05\linewidth, height=0.05\linewidth, charsize=12pt, color=blue, align=1]{{\em Punteggio:~}}\\
+\end{Form}
+\end{flushright}
+}
+\def\afnotes{\afnotess{\afpt}}
+
+% \def\psimbA{\afnotes\def\afpt{0}\droppoints}
+% \def\psimbB{\afnotes\def\afpt{0}\droppoint}
+% \def\psimbC{\afnotes\def\afpt{0}\droppoints}
+% \def\psimbD{\afnotes\def\afpt{0}\droppoints}
+% \def\psimbE{\afnotes\def\afpt{0}\droppoints}
+% \def\psimbF{\afnotes\def\afpt{0}\droppoints}
+
+% \def\pnumA{\afnotes\def\afpt{0}\droppoints}
+% \def\pnumB{\afnotes\def\afpt{0}\droppoint}
+% \def\pnumC{\afnotes\def\afpt{0}\droppoints}
+% \def\pnumD{\afnotes\def\afpt{0}\droppoints}
+% \def\pnumE{\afnotes\def\afpt{0}\droppoints}
+% \def\pnumF{\afnotes\def\afpt{0}\droppoints}
+
+\def\psimbA{}
+\def\psimbB{}
+\def\psimbC{}
+\def\psimbD{}
+\def\psimbE{}
+\def\psimbF{}
+
+\def\pnumA{}
+\def\pnumB{}
+\def\pnumC{}
+\def\pnumD{}
+\def\pnumE{}
+\def\pnumF{}
+
+\def\pteorA{}
+
+% \def\finalComments
+% {
+% \begin{Form}
+% \noindent
+% \TextField[name=tCommenti, multiline=true, bordercolor=verylightgray, backgroundcolor=verylightgray, width=0.95\linewidth, height=1in, charsize=12pt, color=myRed]{{\bf Commenti generali} {\em (a cura del docente)}:\\[1pt]}\\
+% \end{Form}
+% }
+
+\def\finalComments{}
+
+
+
+
+\def\afTheme{%
+%
+\section*{Tema {\em \theThemeTitle}}
+\begin{multicols}{2} \noindent\theThemeDescription \thePicture \end{multicols}
+\vfill\theModel\vfill 
+\begin{multicols}{2} \theVariables\theParameters \end{multicols}
+\theRequirements
+\vfill \newpage
+%
+}
+
+
+
+\def\afSubmission{%
+
+\section*{Istruzioni per la consegna}
+{\small 
+
+\noindent Ogni tema progettuale si propone di far sperimentare allo studente, sia pure in modo semplificato, i diversi momenti di analisi e progettazione, sottesi alla soluzione di un problema di controllo; ciò avviene, per ovvie ragioni, attraverso uno studio teorico e solo simulato, come è tipico nei corsi di controlli automatici di base, ma rappresenta comunque un momento fondamentale che precede qualsiasi realizzazione completa e sperimentale. Le Tabelle~$1$ e~$2$ indicano il significato delle variabili e dei parametri del modello~(\ref{eq:model}), mentre le prima due righe della Tabella~$3$ specificano le ipotesi operative di equilibrio, mentre le restanti righe i requisiti di progetto.\\
+
+La consegna del progetto avviene inviando un'email all'indirizzo di posta elettronica~\textit{\theExamEmail}, con oggetto ``[\theGroupID] Consegna'' e con allegato il PDF generato da questo documento. La consegna può essere fatta solo dal corrispondente del gruppo.\\
+
+Dal momento della consegna non sarà più possibile modificare il seguente progetto overleaf, il quale dovrà includere almeno i seguenti contenuti:
+\begin{itemize}
+%
+\item i file sorgenti \LaTeX{} del PDF (main.tex, theme.tex, 1*.tex, 2*tex, 3*.tex);
+%
+\item una cartella \textit{img} contenente le immagini e tutti i grafici inseriti nel testo, che devono essere riportati in formato vettoriale e contenere annotazioni adeguate e leggibili;
+\item una cartella \textit{support} contenente (1) gli script (estensione .m) necessari per inizializzare e lanciare la simulazione, (2) i salvataggi delle sessioni di lavoro in \emph{sisotool}, e (3) i due diagrammi \emph{Simulink} (estensione .slx) dei sistemi approssimato lineare e non lineare, controllati (eventualmente con il doppio anello di retroazione), correttamente funzionanti e tali da riprodurre i risultati riportati nel documento descrittivo. 
+\end{itemize}
+\vfill \newpage
+
+}
+
+}
+
+

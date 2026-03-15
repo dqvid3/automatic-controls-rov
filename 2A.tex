@@ -1,0 +1,30 @@
+\textbf{Specifiche statiche:} \\
+Segnali a gradino sono spesso usati per generare riferimenti
+costanti. Per raggiungere l'inseguimento perfetto di un riferimento costante $r(t)$ per la variazione dell'uscita $y(t)$ è necessario imporre:
+\[\lim_{t\to\infty} e(t)= \lim_{t\to\infty} (r(t)-y(t))=0 \]
+Tuttavia tale condizione è verificata se $G(s)$ ha almeno un polo nell'origine, come nel nostro caso. \\ \\
+\textbf{Specifiche dinamiche:} \\
+Dobbiamo assicurare un inseguimento perfetto di un gradino con un tempo di risposta non superiore a 45s ed eventuali oscillazioni entro il 5\% dal valore di regime.
+\\ Per farlo calcoliamo la $G_c(s)$. \\
+Iniziamo utilizzando un'approssimazione ad un polo dominante ovvero: $$G_c(s)\approx \frac{1}{1+s\tau}$$
+\begin{comment}
+Ricaviamo lo smorzamento $\delta$ sfruttando la seguente relazione: 
+\[S=e^{-\frac{\pi\delta}{\sqrt{1-\delta^2}}}\]
+Svolgendo i seguenti passaggi: \\
+\begin{displaymath}
+\begin{array}{c}
+\ln(S)=-\frac{\pi\delta}{\sqrt{1-\delta^2}} \\
+(1-\delta^2)\ln^2(S)=\pi^2\delta^2 \\
+\ln^2(S)-\delta^2\ln^2(S)=\pi^2\delta^2 \\
+\ln^2(S)=\delta^2(\pi^2+\ln^2(S)) \\
+\delta^2=\frac{\ln^2(S)}{\pi^2+\ln^2(S)} \\
+\delta=\sqrt{\frac{\ln^2(S)}{\pi^2+\ln^2(S)}} \\
+\end{array}
+\end{displaymath}
+E sostituendo i valori numerici otteniamo: \\ \\
+$\delta=\sqrt{\frac{\ln^2(0.05)}{\pi^2+\ln^2(0.05)}}= 0.69010 \approx 0.7$ \\
+\end{comment}
+E' possibile ricavare il margine di fase $M_f$ richiesto sapendo che per i sistemi a un polo dominante la $\phi(t)=-90°$, ottenendo quindi $M_f=\pi+\phi (t) = 90°$.
+\\
+Ricaviamo adesso la pulsazione di taglio $\omega_T$ tramite la seguente relazione: \\ $$\omega_T \geq \frac{3}{T_a} = \frac{3}{45} = 0.0667 \, rad/s$$ \\
+Si dovrà quindi ottenere un margine di fase $M_f \approx 90°$ e una frequenza di taglio $\omega_T \geq 0.0667 \, rad/s$.
