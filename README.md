@@ -1,6 +1,6 @@
 # Automatic Controls — ROV Controller Design
 
-**Course:** Controlli Automatici (Automatic Controls) — BSc in Computer Engineering, University of Palermo
+**Course:** Controlli Automatici (Automatic Controls) — BEng in Computer Engineering, University of Palermo
 **Academic Year:** 2022/2023
 **Group:** CA22-21 (6 members)
 
